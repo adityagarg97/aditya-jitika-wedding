@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.tools/
+tmp/
+*.log
+data/
+public/invitation.pdf
+public/ganesh.png
+public/ganesh.svg
