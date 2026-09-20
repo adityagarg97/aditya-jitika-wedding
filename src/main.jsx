@@ -101,7 +101,7 @@ const events = [
 ].sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start));
 const venueMaps = {
   engagement: "https://maps.app.goo.gl/24TccrDPM9zDxcyA6",
-  carnival: "https://maps.app.goo.gl/MmvuHuLn6FVQ1abL6?g_st=iw",
+  carnival: "https://maps.app.goo.gl/kGQ5KHra4aiTg9J37?g_st=aw",
   mehndi: "https://maps.app.goo.gl/2mu9zHSWFZhrGA856",
   wedding: "https://maps.app.goo.gl/rGn15p6Hag3PmVT6A",
 };
