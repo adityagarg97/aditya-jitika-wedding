@@ -76,7 +76,7 @@ const events = [
     start: "160000",
     venue: "Greater Kailash, Part I",
     detail: "",
-    address: "S-277, Greater Kailash Part 1, New Delhi",
+    address: "",
     description: "With joyful hearts, the wedding celebrations begin.",
     video: "wedding",
     label: "THE WEDDING DAY",
@@ -158,9 +158,9 @@ function CeremonyDetails({ event, weddingDay = false }) {
         <div className="venue-copy">
           <strong>{event.venue}</strong>
           {event.detail && <span>{event.detail}</span>}
-          <p>{event.address}</p>
+          {event.address && <p>{event.address}</p>}
         </div>
-        <a
+        {event.address && <a
           className="venue-directions"
           href={mapUrl(event)}
           target="_blank"
@@ -170,7 +170,7 @@ function CeremonyDetails({ event, weddingDay = false }) {
           <MapPin size={17} />
           <span>Directions</span>
           <ArrowUpRight size={12} />
-        </a>
+        </a>}
       </div>
     </div>
   );
