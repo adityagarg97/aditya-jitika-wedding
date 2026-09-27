@@ -282,7 +282,7 @@ function App() {
       {musicReady && (
         <audio
           ref={audio}
-          src={asset("media/music.mp3?v=start37")}
+          src={asset("media/music.mp3?v=jashn-e-bahara-16")}
           autoPlay
           onPlay={() => setSound(true)}
           onPause={() => setSound(false)}
@@ -514,3 +514,4 @@ function App() {
   );
 }
 createRoot(document.getElementById("root")).render(<App />);
+

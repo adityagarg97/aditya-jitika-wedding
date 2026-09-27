@@ -13,7 +13,7 @@ Create the production site with `npm run build`. Preview it with `npm run previe
 
 ## Music
 
-The supplied `data/Ishq Hai.mp3` is included as `public/media/music.mp3`. The website copy starts 37 seconds into the original song and loops from that point at 40% volume. The original audio in `data/` is unchanged. The audio loads immediately and attempts audible autoplay on load. If the browser blocks autoplay, the first click, tap or keypress starts it; the music control also works directly. Once playback starts, interaction retries are removed so pausing stays respected. The hero is shown immediately, without an entrance screen. A music control lets guests pause or resume. The four background videos are always muted. To change the song, replace `public/media/music.mp3` and rebuild.
+The supplied `data/Jashn-E-Bahara.mp3` is included as `public/media/music.mp3`. The website copy starts 16 seconds into the original track at 40% volume and repeats automatically. Approximately five seconds of trailing silence are removed, with a brief fade at each edge for a cleaner restart. The original audio in `data/` is unchanged. The audio loads immediately and attempts audible autoplay on load. If the browser blocks autoplay, the first click, tap or keypress starts it; the music control also works directly. Once playback starts, interaction retries are removed so pausing stays respected. The hero is shown immediately, without an entrance screen. A music control lets guests pause or resume. The four background videos are always muted. To change the song, replace `public/media/music.mp3`, update its version query in `src/main.jsx`, and rebuild.
 
 ## GitHub Pages
 
@@ -52,3 +52,4 @@ Use the deployed site URL with these query strings:
 The heading, schedule and footer dates adapt to the selected invitation. These are presentation variants, not private access controls. There is no guest-facing version switcher. Query-based links work on GitHub Pages and a future custom domain without routing rewrites.
 
 Original files in `data/`, the archived PDF and replaced Ganesh images are excluded from the repository; only the assets currently used by the site are published.
+
