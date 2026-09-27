@@ -274,6 +274,11 @@ p {
   font-size: 12px;
   margin: 0;
 }
+.family h3::first-letter {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
 .family small {
   font-size: 10px;
   color: #828276;

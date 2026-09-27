@@ -133,7 +133,7 @@ function Film({ name, paused, className = "" }) {
       preload="none"
       aria-hidden="true"
     >
-      <source src={asset(`media/${name}.mp4`)} type="video/mp4" />
+      <source src={asset(`media/${name}.mp4?v=1080p`)} type="video/mp4" />
     </video>
   );
 }
