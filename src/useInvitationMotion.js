@@ -8,7 +8,7 @@ export function useInvitationMotion(paused) {
       cleanup();
       if (preference.matches || paused) return;
       const elements = [...document.querySelectorAll(
-        ".hero-content > :not(.ganesh-icon), .intro > h2, .intro-copy, .family > *, .countdown, .section-heading, .event-panel, .event-header, .ceremony-heading, .venue-row, .details > h2, .contact-card, .footer-names",
+        ".hero-content > :not(.ganesh-icon), .intro > h2, .intro-copy, .family > *, .countdown, .section-heading, .event-panel, .details > h2, .contact-card, .footer-names",
       )];
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(({ target, isIntersecting }) => {
@@ -20,15 +20,12 @@ export function useInvitationMotion(paused) {
       }, { threshold: 0.08 });
       elements.forEach((element) => {
         element.classList.add("motion-reveal");
-        if (element.matches(".event-header, .ceremony-heading")) element.style.setProperty("--reveal-delay", "80ms");
-        if (element.matches(".venue-row")) element.style.setProperty("--reveal-delay", "160ms");
         observer.observe(element);
       });
       cleanup = () => {
         observer.disconnect();
         elements.forEach((element) => {
           element.classList.remove("motion-reveal", "motion-visible");
-          element.style.removeProperty("--reveal-delay");
         });
       };
     };
