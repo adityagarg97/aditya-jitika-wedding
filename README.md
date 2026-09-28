@@ -29,7 +29,7 @@ For a custom domain later, configure it in repository **Settings → Pages**, ad
 
 - Names, schedule, contacts and content: `src/main.jsx`.
 - Colours, typography and responsive layout: `src/styles.css`.
-- Optimised videos and still-image fallbacks: `public/media/`.
+- Original 1080p videos and full-resolution still-image fallbacks: `public/media/`. Videos preload when the page opens so they can play promptly as guests scroll; playback pauses when off-screen or the tab is hidden. The Ganesh image is stored as lossless WebP to reduce download size without changing its pixels.
 - Archived invitation: `public/invitation.pdf`.
 - Original provided assets: `data/` (not included in the production build).
 

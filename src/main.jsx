@@ -112,29 +112,38 @@ function Film({ name, paused, className = "" }) {
   const ref = useRef(null);
   useEffect(() => {
     const v = ref.current;
+    let isNear = false;
+    const syncPlayback = () => {
+      if (paused || document.hidden) v.pause();
+      else if (isNear) v.play().catch(() => {});
+    };
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !paused) v.play().catch(() => {});
+        isNear = entry.isIntersecting;
+        if (isNear && !paused && !document.hidden) v.play().catch(() => {});
         else v.pause();
       },
       { rootMargin: "150px" },
     );
     observer.observe(v);
-    return () => observer.disconnect();
+    document.addEventListener("visibilitychange", syncPlayback);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", syncPlayback);
+    };
   }, [paused]);
   return (
     <video
       ref={ref}
       className={`film ${className}`}
       poster={asset(`media/${name}.jpg`)}
+      src={asset(`media/${name}.mp4?v=1080p`)}
       muted
       loop
       playsInline
-      preload="none"
+      preload="auto"
       aria-hidden="true"
-    >
-      <source src={asset(`media/${name}.mp4?v=1080p`)} type="video/mp4" />
-    </video>
+    />
   );
 }
 function CeremonyDetails({ event, weddingDay = false }) {
@@ -311,7 +320,7 @@ function App() {
             <div className="hero-content">
               <img
                 className="ganesh-icon"
-                src={asset("ganesh-silver.png")}
+                src={asset("ganesh-silver.webp")}
                 alt="Lord Ganesh"
                 width="88"
                 height="104"
