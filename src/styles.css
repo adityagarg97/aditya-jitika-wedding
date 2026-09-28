@@ -1214,12 +1214,7 @@ footer .eyebrow {
 .family h3, .hero h1.motion-reveal { --reveal-delay: 80ms; }
 .hero h1.motion-reveal { transform: translate3d(-18px, 0, 0); }
 .motion-reveal.motion-visible { opacity: 1; transform: none; }
-.film.motion-film {
-  top: -20px;
-  height: calc(100% + 40px);
-  transform: translate3d(0, var(--parallax-offset, 0px), 0);
-}
 @media (prefers-reduced-motion: reduce) {
   .motion-reveal { opacity: 1; transform: none !important; }
-  .film.motion-film { top: 0; height: 100%; transform: none !important; }
-}
+  }
+
