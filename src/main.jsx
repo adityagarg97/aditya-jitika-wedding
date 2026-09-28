@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import "./styles.css";
 import { getInvitation } from "./invitation.js";
-import { useInvitationMotion } from "./useInvitationMotion.js";
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
 const events = [
@@ -197,7 +196,6 @@ function App() {
     [now, setNow] = useState(Date.now());
   const audio = useRef(null);
   const musicReady = true;
-  useInvitationMotion(paused);
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 60000);
     return () => clearInterval(t);
