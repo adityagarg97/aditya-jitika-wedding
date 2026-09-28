@@ -45,7 +45,7 @@ const events = [
     address:
       "Plot No. 6, Chaudhary Dutta Ram Marg, Sector 7 Dwarka, Palam, New Delhi – 110077",
     description: "A morning of colour, laughter and a little golden sunshine.",
-    video: "garden",
+    video: "carnival",
     label: "COLOURS OF JOY",
   },
   {
@@ -62,7 +62,7 @@ const events = [
     address: "Greater Kailash, New Delhi",
     description:
       "Cherished traditions, heartfelt blessings and beautiful beginnings.",
-    video: "wedding",
+    video: "mehndi",
     label: "TRADITIONS & TOGETHERNESS",
   },
   {
@@ -136,7 +136,11 @@ function Film({ name, paused, className = "" }) {
     <video
       ref={ref}
       className={`film ${className}`}
-      poster={asset(`media/${name}.jpg`)}
+      poster={
+        ["hero", "carnival", "mehndi"].includes(name)
+          ? undefined
+          : asset(`media/${name}.jpg`)
+      }
       src={asset(`media/${name}.mp4?v=1080p`)}
       muted
       loop
@@ -315,7 +319,7 @@ function App() {
         </header>
         <main>
           <section className="hero" id="home">
-            <Film name="haldi" paused={paused} />
+            <Film name="hero" paused={paused} />
             <div className="hero-shade" />
             <div className="hero-content">
               <img

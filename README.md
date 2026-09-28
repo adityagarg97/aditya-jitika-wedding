@@ -1,6 +1,6 @@
 # Aditya & Jitika — wedding invitation
 
-An elegant, responsive React + Vite invitation, with glass panels, four looping films, chronological celebrations, venue directions and click-to-call RSVP details. Event and family details are transcribed from the supplied invitation PDF.
+An elegant, responsive React + Vite invitation, with glass panels, looping films, chronological celebrations, venue directions and click-to-call RSVP details. Event and family details are transcribed from the supplied invitation PDF.
 
 ## Run locally
 
@@ -13,7 +13,7 @@ Create the production site with `npm run build`. Preview it with `npm run previe
 
 ## Music
 
-The supplied `data/Jashn-E-Bahara.mp3` is included as `public/media/music.mp3`. The website copy starts 16 seconds into the original track at 40% volume and repeats automatically. Approximately five seconds of trailing silence are removed, with a brief fade at each edge for a cleaner restart. The original audio in `data/` is unchanged. The audio loads immediately and attempts audible autoplay on load. If the browser blocks autoplay, the first click, tap or keypress starts it; the music control also works directly. Once playback starts, interaction retries are removed so pausing stays respected. The hero is shown immediately, without an entrance screen. A music control lets guests pause or resume. The four background videos are always muted. To change the song, replace `public/media/music.mp3`, update its version query in `src/main.jsx`, and rebuild.
+The supplied `data/Jashn-E-Bahara.mp3` is included as `public/media/music.mp3`. The website copy starts 16 seconds into the original track at 40% volume and repeats automatically. Approximately five seconds of trailing silence are removed, with a brief fade at each edge for a cleaner restart. The original audio in `data/` is unchanged. The audio loads immediately and attempts audible autoplay on load. If the browser blocks autoplay, the first click, tap or keypress starts it; the music control also works directly. Once playback starts, interaction retries are removed so pausing stays respected. The hero is shown immediately, without an entrance screen. A music control lets guests pause or resume. The background videos are always muted. To change the song, replace `public/media/music.mp3`, update its version query in `src/main.jsx`, and rebuild.
 
 ## GitHub Pages
 
@@ -29,7 +29,7 @@ For a custom domain later, configure it in repository **Settings → Pages**, ad
 
 - Names, schedule, contacts and content: `src/main.jsx`.
 - Colours, typography and responsive layout: `src/styles.css`.
-- Original 1080p videos and full-resolution still-image fallbacks: `public/media/`. Videos preload when the page opens so they can play promptly as guests scroll; playback pauses when off-screen or the tab is hidden. The Ganesh image is stored as lossless WebP to reduce download size without changing its pixels.
+- Background videos and available still-image fallbacks: `public/media/`. The hero uses `hero.mp4` (from `data/Video 1.mp4`), Haldi Carnival uses `carnival.mp4`, and Haldi & Mehndi uses `mehndi.mp4`. Videos preload when the page opens so they can play promptly as guests scroll; playback pauses when off-screen or the tab is hidden. The Ganesh image is stored as lossless WebP to reduce download size without changing its pixels.
 - Archived invitation: `public/invitation.pdf`.
 - Original provided assets: `data/` (not included in the production build).
 
