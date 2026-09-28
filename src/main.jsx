@@ -9,6 +9,7 @@ import {
   Pause,
   Phone,
   Check,
+  ArrowDown,
 } from "lucide-react";
 import "./styles.css";
 import { getInvitation } from "./invitation.js";
@@ -345,6 +346,9 @@ function App() {
             </div>
             <div className="hero-foot">
               <span>#AdiKoMilliJit</span>
+              <a className="scroll-cue" href="#story" aria-label="Scroll down to our story">
+                <ArrowDown size={18} strokeWidth={1.4} aria-hidden="true" />
+              </a>
             </div>
           </section>
           <section className="intro section" id="story">

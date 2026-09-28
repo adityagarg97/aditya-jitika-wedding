@@ -213,18 +213,40 @@ p {
 }
 .hero-foot {
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   left: 5.7%;
   right: 5.7%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 8px;
   font-size: 8px;
   letter-spacing: 2px;
 }
-.hero-foot > span:last-child {
+.hero-foot > span {
   font: italic 18px var(--serif);
   letter-spacing: 0;
+}
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  filter: drop-shadow(0 1px 5px #142218a8);
+}
+.scroll-cue svg {
+  animation: scroll-cue-bob 2s ease-in-out infinite;
+}
+.scroll-cue:hover,
+.scroll-cue:focus-visible {
+  color: #f4e6c9;
+}
+@keyframes scroll-cue-bob {
+  50% {
+    transform: translateY(4px);
+  }
 }
 .section {
   max-width: 1220px;
@@ -652,11 +674,11 @@ footer .eyebrow {
     font-size: 8px;
   }
   .hero-foot {
-    bottom: 27px;
+    bottom: 18px;
     left: 22px;
     right: 22px;
   }
-  .hero-foot > span:last-child {
+  .hero-foot > span {
     font-size: 17px;
   }
   .section {
@@ -914,7 +936,7 @@ footer .eyebrow {
     font-size: 29px;
   }
   .hero-foot {
-    bottom: 35px;
+    bottom: 24px;
   }
   .event {
     min-height: 490px;
