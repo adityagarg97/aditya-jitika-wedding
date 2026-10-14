@@ -79,6 +79,7 @@ const events = [
     detail: "",
     address: "",
     description: "With joyful hearts, the wedding celebrations begin.",
+    video: "wedding",
     label: "THE WEDDING DAY",
   },
   {
@@ -110,32 +111,20 @@ const mapUrl = (e) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.address)}`;
 function Film({ name, paused, className = "" }) {
   const ref = useRef(null);
-  const [needsTap, setNeedsTap] = useState(false);
   useEffect(() => {
     const v = ref.current;
     let isNear = false;
-    const tryPlay = () => {
-      v.muted = true;
-      const attempt = v.play();
-      if (attempt?.catch) {
-        attempt.catch((error) => {
-          if (error?.name !== "AbortError" && isNear && !document.hidden) {
-            setNeedsTap(true);
-          }
-        });
-      }
-    };
     const syncPlayback = () => {
       if (paused || document.hidden) v.pause();
-      else if (isNear) tryPlay();
+      else if (isNear) v.play().catch(() => {});
     };
     const observer = new IntersectionObserver(
       ([entry]) => {
         isNear = entry.isIntersecting;
-        if (isNear && !paused && !document.hidden) tryPlay();
+        if (isNear && !paused && !document.hidden) v.play().catch(() => {});
         else v.pause();
       },
-      { threshold: 0.1 },
+      { rootMargin: "150px" },
     );
     observer.observe(v);
     document.addEventListener("visibilitychange", syncPlayback);
@@ -145,42 +134,21 @@ function Film({ name, paused, className = "" }) {
     };
   }, [paused]);
   return (
-    <>
-      <video
-        ref={ref}
-        className={`film ${className}`}
-        poster={
-          ["hero", "carnival", "mehndi"].includes(name)
-            ? undefined
-            : asset(`media/${name}.jpg`)
-        }
-        src={asset(`media/${name}.mp4?v=faststart-1080p`)}
-        autoPlay={!paused}
-        muted
-        loop
-        playsInline
-        preload="auto"
-        onPlaying={() => setNeedsTap(false)}
-        aria-hidden="true"
-      />
-      {needsTap && !paused && (
-        <button
-          className="film-play"
-          type="button"
-          onClick={() => {
-            const video = ref.current;
-            video.muted = true;
-            Promise.resolve(video.play())
-              .then(() => setNeedsTap(false))
-              .catch(() => {});
-          }}
-          aria-label={`Play ${name === "hero" ? "hero" : name} video`}
-        >
-          <Play size={18} fill="currentColor" />
-          <span>Tap to play video</span>
-        </button>
-      )}
-    </>
+    <video
+      ref={ref}
+      className={`film ${className}`}
+      poster={
+        ["hero", "carnival", "mehndi"].includes(name)
+          ? undefined
+          : asset(`media/${name}.jpg`)
+      }
+      src={asset(`media/${name}.mp4?v=1080p`)}
+      muted
+      loop
+      playsInline
+      preload="auto"
+      aria-hidden="true"
+    />
   );
 }
 function CeremonyDetails({ event, weddingDay = false }) {

@@ -29,7 +29,7 @@ For a custom domain later, configure it in repository **Settings → Pages**, ad
 
 - Names, schedule, contacts and content: `src/main.jsx`.
 - Colours, typography and responsive layout: `src/styles.css`.
-- Background videos and available still-image fallbacks: `public/media/`. The hero uses `hero.mp4` (from `data/Video 1.mp4`), Haldi Carnival uses `carnival.mp4`, and Haldi & Mehndi uses `mehndi.mp4`. All published videos retain the supplied 1080 × 1920 H.264 picture. The three new videos have their playback index at the start for faster streaming, without changing the encoded video. Each video used by the selected invitation requests automatic preloading when the page opens, then plays as guests scroll near it; playback pauses off-screen or when the tab is hidden. The Ganesh image is stored as lossless WebP to reduce download size without changing its pixels.
+- Background videos and available still-image fallbacks: `public/media/`. The hero uses `hero.mp4` (from `data/Video 1.mp4`), Haldi Carnival uses `carnival.mp4`, and Haldi & Mehndi uses `mehndi.mp4`. Videos preload when the page opens so they can play promptly as guests scroll; playback pauses when off-screen or the tab is hidden. The Ganesh image is stored as lossless WebP to reduce download size without changing its pixels.
 - Archived invitation: `public/invitation.pdf`.
 - Original provided assets: `data/` (not included in the production build).
 
@@ -45,10 +45,9 @@ Event panels span the full video width with compact date/time boxes and inline d
 
 Use the deployed site URL with these query strings:
 
-- No query string: wedding day only, including Ghurchari and reception of baraat.
-- `?invite=wedding`: same wedding-day invitation.
+- `?invite=wedding`: wedding day only, including Ghurchari and reception of baraat.
 - `?invite=engagement-wedding`: engagement and the wedding day.
-- `?invite=all`: all four celebration days.
+- `?invite=all`: all four celebration days (also the default).
 
 The heading, schedule and footer dates adapt to the selected invitation. These are presentation variants, not private access controls. There is no guest-facing version switcher. Query-based links work on GitHub Pages and a future custom domain without routing rewrites.
 
