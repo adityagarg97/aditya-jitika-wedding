@@ -63,7 +63,7 @@ const events = [
     address: "Greater Kailash, New Delhi",
     description:
       "Cherished traditions, heartfelt blessings and beautiful beginnings.",
-    video: "mehndi",
+    video: "wedding",
     label: "TRADITIONS & TOGETHERNESS",
   },
   {
@@ -138,7 +138,7 @@ function Film({ name, paused, className = "" }) {
       ref={ref}
       className={`film ${className}`}
       poster={
-        ["hero", "carnival", "mehndi"].includes(name)
+        ["hero", "carnival"].includes(name)
           ? undefined
           : asset(`media/${name}.jpg`)
       }
