@@ -1,2 +1,13 @@
 import { defineConfig } from "vite";
-export default defineConfig({ base: "./" });
+export default defineConfig({
+  base: "./",
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: "assets/site.js",
+        chunkFileNames: "assets/[name].js",
+        assetFileNames: "assets/[name].[ext]",
+      },
+    },
+  },
+});

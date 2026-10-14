@@ -21,6 +21,6 @@ const versions = {
 
 export function getInvitation(search = "") {
   const requested = new URLSearchParams(search).get("invite");
-  const key = Object.hasOwn(versions, requested) ? requested : "all";
+  const key = Object.hasOwn(versions, requested) ? requested : "wedding";
   return { key, ...versions[key] };
 }

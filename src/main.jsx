@@ -79,7 +79,6 @@ const events = [
     detail: "",
     address: "",
     description: "With joyful hearts, the wedding celebrations begin.",
-    video: "wedding",
     label: "THE WEDDING DAY",
   },
   {

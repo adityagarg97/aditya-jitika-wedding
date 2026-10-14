@@ -47,9 +47,11 @@ Use the deployed site URL with these query strings:
 
 - `?invite=wedding`: wedding day only, including Ghurchari and reception of baraat.
 - `?invite=engagement-wedding`: engagement and the wedding day.
-- `?invite=all`: all four celebration days (also the default).
+- `?invite=all`: all four celebration days.
+
+The homepage without an invitation code shows the wedding day only. Unknown invitation codes also show the wedding day.
 
 The heading, schedule and footer dates adapt to the selected invitation. These are presentation variants, not private access controls. There is no guest-facing version switcher. Query-based links work on GitHub Pages and a future custom domain without routing rewrites.
 
-Original files in `data/`, the archived PDF and replaced Ganesh images are excluded from the repository; only the assets currently used by the site are published.
+Original files in `data/` and the archived PDF are excluded from the repository. The published site includes the five videos used by invitation pages; older JavaScript and CSS files remain available for guests whose browsers still have a previous page cached.
 
