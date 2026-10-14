@@ -79,7 +79,6 @@ const events = [
     detail: "",
     address: "",
     description: "With joyful hearts, the wedding celebrations begin.",
-    video: "wedding",
     label: "THE WEDDING DAY",
   },
   {
@@ -142,7 +141,7 @@ function Film({ name, paused, className = "" }) {
           ? undefined
           : asset(`media/${name}.jpg`)
       }
-      src={asset(`media/${name}.mp4?v=1080p`)}
+      src={asset(`media/${name}.mp4?v=faststart-1080p`)}
       muted
       loop
       playsInline

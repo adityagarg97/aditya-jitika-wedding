@@ -29,7 +29,7 @@ For a custom domain later, configure it in repository **Settings → Pages**, ad
 
 - Names, schedule, contacts and content: `src/main.jsx`.
 - Colours, typography and responsive layout: `src/styles.css`.
-- Background videos and available still-image fallbacks: `public/media/`. The hero uses `hero.mp4` (from `data/Video 1.mp4`), Haldi Carnival uses `carnival.mp4`, and Haldi & Mehndi uses `mehndi.mp4`. Videos preload when the page opens so they can play promptly as guests scroll; playback pauses when off-screen or the tab is hidden. The Ganesh image is stored as lossless WebP to reduce download size without changing its pixels.
+- Background videos and available still-image fallbacks: `public/media/`. The hero uses `hero.mp4` (from `data/Video 1.mp4`), Haldi Carnival uses `carnival.mp4`, and Haldi & Mehndi uses `mehndi.mp4`. All published videos retain the supplied 1080 × 1920 H.264 picture. The three new videos have their playback index at the start for faster streaming, without changing the encoded video. Each video used by the selected invitation requests automatic preloading when the page opens, then plays as guests scroll near it; playback pauses off-screen or when the tab is hidden. The Ganesh image is stored as lossless WebP to reduce download size without changing its pixels.
 - Archived invitation: `public/invitation.pdf`.
 - Original provided assets: `data/` (not included in the production build).
 
