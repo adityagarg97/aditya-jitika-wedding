@@ -4,7 +4,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: "assets/site.js",
+        entryFileNames: "assets/site-video-cache-v1.js",
         chunkFileNames: "assets/[name].js",
         assetFileNames: "assets/[name].[ext]",
       },

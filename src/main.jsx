@@ -15,6 +15,45 @@ import "./styles.css";
 import { getInvitation } from "./invitation.js";
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
+const videoCacheName = "wedding-videos-1080p-v1";
+const videoUrl = (name) => asset(`media/${name}.mp4?v=1080p`);
+let cachingVideos = false;
+
+async function cacheVideos(names) {
+  if (
+    !import.meta.env.PROD ||
+    !("caches" in window) ||
+    !("serviceWorker" in navigator) ||
+    navigator.connection?.saveData ||
+    cachingVideos
+  )
+    return;
+  cachingVideos = true;
+  try {
+    const cache = await caches.open(videoCacheName);
+    for (const name of names) {
+      if (document.hidden) break;
+      const url = videoUrl(name);
+      if (await cache.match(url)) continue;
+      try {
+        const response = await fetch(url, { cache: "force-cache" });
+        if (
+          response.status === 200 &&
+          response.headers.get("content-type")?.includes("video/mp4")
+        ) {
+          await cache.put(url, response);
+        }
+      } catch {
+        // A full cache or interrupted download must not affect playback.
+      }
+    }
+  } catch {
+    // Private browsing or storage limits may disable the Cache API.
+  } finally {
+    cachingVideos = false;
+  }
+}
+
 const events = [
   {
     id: "engagement",
@@ -110,6 +149,28 @@ const mapUrl = (e) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.address)}`;
 function Film({ name, paused, className = "" }) {
   const ref = useRef(null);
+  const [source, setSource] = useState(() => videoUrl(name));
+  useEffect(() => {
+    if (!("caches" in window) || !navigator.serviceWorker?.controller) return;
+    let cancelled = false;
+    caches
+      .open(videoCacheName)
+      .then((cache) => cache.match(videoUrl(name)))
+      .then((cached) => {
+        if (
+          cached &&
+          !cancelled &&
+          ref.current &&
+          ref.current.currentTime < 0.1
+        ) {
+          setSource(asset(`cached-video/${name}.mp4`));
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [name]);
   useEffect(() => {
     const v = ref.current;
     let isNear = false;
@@ -131,7 +192,7 @@ function Film({ name, paused, className = "" }) {
       observer.disconnect();
       document.removeEventListener("visibilitychange", syncPlayback);
     };
-  }, [paused]);
+  }, [paused, source]);
   return (
     <video
       ref={ref}
@@ -141,7 +202,8 @@ function Film({ name, paused, className = "" }) {
           ? undefined
           : asset(`media/${name}.jpg`)
       }
-      src={asset(`media/${name}.mp4?v=1080p`)}
+      crossOrigin={source.includes("cached-video/") ? "anonymous" : undefined}
+      src={source}
       muted
       loop
       playsInline
@@ -209,6 +271,30 @@ function App() {
     [now, setNow] = useState(Date.now());
   const audio = useRef(null);
   const musicReady = true;
+  useEffect(() => {
+    if (!import.meta.env.PROD || !("caches" in window)) return;
+    const names = [
+      "hero",
+      ...events
+        .filter((event) => invitation.cards.includes(event.id))
+        .map((event) => event.video),
+    ];
+    let timer;
+    const start = () => {
+      timer = window.setTimeout(() => cacheVideos(names), 4000);
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+    const resume = () => {
+      if (!document.hidden) cacheVideos(names);
+    };
+    document.addEventListener("visibilitychange", resume);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("load", start);
+      document.removeEventListener("visibilitychange", resume);
+    };
+  }, [invitation.key]);
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 60000);
     return () => clearInterval(t);
@@ -530,4 +616,11 @@ function App() {
   );
 }
 createRoot(document.getElementById("root")).render(<App />);
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  const registerVideoCache = () => {
+    navigator.serviceWorker.register(asset("video-cache-sw.js")).catch(() => {});
+  };
+  if (document.readyState === "complete") registerVideoCache();
+  else window.addEventListener("load", registerVideoCache, { once: true });
+}
 
