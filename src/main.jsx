@@ -408,13 +408,15 @@ function App() {
             <Film name="hero" paused={paused} />
             <div className="hero-shade" />
             <div className="hero-content">
-              <img
-                className="ganesh-icon"
-                src={asset("ganesh-silver.webp")}
-                alt="Lord Ganesh"
-                width="88"
-                height="104"
-              />
+              <span className="ganesh-halo ganesh-halo--red">
+                <img
+                  className="ganesh-icon"
+                  src={asset("ganesh-silver.webp")}
+                  alt="Lord Ganesh"
+                  width="104"
+                  height="122"
+                />
+              </span>
               <p className="eyebrow">TOGETHER WITH OUR FAMILIES</p>
               <h1>
                 Aditya <span>&</span> Jitika
